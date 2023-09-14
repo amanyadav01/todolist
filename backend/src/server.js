@@ -1,6 +1,6 @@
 
 const http = require('http');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = require('./app');
 
@@ -16,25 +16,6 @@ mongoose
     }).catch(() => {
         console.warn("Db Connection unsuccessful")
     })
-
-const taskSchema = new mongoose.Schema({
-    name: String,
-    description: String
-})
-
-const Task = mongoose.model('Task', taskSchema);
-const newTask = new Task({
-    name: 'Buy a new house decoration',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'
-});
-newTask.save()
-    .then((doc) => {
-        console.log("new Doc created>>>>>>>>>> ", doc)
-    })
-    .catch(err => {
-        console.log("Error in saving new Task")
-    })
-
 
 const PORT = process.env.PORT || 9008
 const server = http.createServer(app)

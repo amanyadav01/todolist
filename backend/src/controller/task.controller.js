@@ -1,38 +1,56 @@
-const fs = require('fs');
-const { getAllTask, getTaskDetail, addNewTask } = require('../models/task.model')
+const Task = require('../models/task.model');
 
 
-const getTask = (req, res) => {
-    getAllTask((taskList) => {
-        if (!taskList) {
-            return res.status(200).json({ status: 'Success', message: 'No Task Available' })
-        } else {
-            res.status(200).json(taskList)
-        }
-    })
-}
 
-const getTaskByID = (req, res) => {
-    const taskId = +req.params.id
-    getTaskDetail(taskId, (task) => {
-        if (!task) {
-            return res.status(404).json({ status: 'Success', message: 'Task not found' })
-        } else {
-            res.status(200).json(task)
-        }
-    })
-}
-
-
-const addTask = (req, res) => {
-    const data = req?.body;
-    if (!data.name) {
-        return res.status(400).json({ status: 'Failure', message: 'Task Name is missing' })
+const getTask = async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.status(200).json({ status: 'Success', data: tasks })
+    } catch (error) {
+        res.status(404).json({ status: 'Failure', message: 'Something went wrong' })
     }
-    const newTask = { ...data, id: Math.floor(Math.random() * 71) + 30 }
-    addNewTask(newTask, () => {
-        res.status(200).json({ status: 'Success', message: 'Task added successfully' })
-    })
+
 }
 
-module.exports = { getTask, getTaskByID, addTask }
+const getTaskByID = async (req, res) => {
+
+    try {
+        const task = await Task.findById(req.params.id);
+        res.status(200).json({ status: 'Success', data: task })
+    } catch (error) {
+        res.status(404).json({ status: 'Failure', message: 'Something went wrong' })
+    }
+}
+
+
+const addTask = async (req, res) => {
+    const data = req?.body;
+    try {
+        const newTask = await Task.create(data);
+        res.status(200).json({ status: 'Success', message: 'Task added successfully', data: newTask })
+    } catch (error) {
+        res.status(400).json({ status: 'Failure', message: 'Something went wrong' })
+    }
+}
+
+const updateTask = async (req, res) => {
+    const data = req?.body;
+    const taskId = req.params.id;
+    try {
+        const task = await Task.findByIdAndUpdate(taskId, data, { new: true });
+        res.status(200).json({ status: 'Success', message: 'Task updated successfully', task })
+    } catch (error) {
+        res.status(404).json({ status: 'Failure', message: 'Something went wrong' })
+    }
+}
+
+const removeTask = async (req, res) => {
+    try {
+        await Task.findByIdAndDelete(req.params.id)
+        res.status(204).json({ status: 'Success', message: 'Task deleted successfully' })
+    } catch (error) {
+        res.status(404).json({ status: 'Failure', message: 'Something went wrong' })
+    }
+}
+
+module.exports = { getTask, getTaskByID, addTask, updateTask, removeTask }
