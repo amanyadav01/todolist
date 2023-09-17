@@ -1,10 +1,19 @@
-import Dashboard from '../components/dashboard';
+import { Outlet } from 'react-router-dom';
+// import Dashboard from '../components/dashboard';
 import Sidebar from '../components/dashboard/sidebar';
+import Header from '../components/header';
+import styles from '../components/dashboard/dashboard.module.css';
+
 const DashboardLayout = () => {
   return (
-    <section style={{ display: 'flex' }}>
+    <section className={styles['layout-container']}>
       <Sidebar />
-      <Dashboard />
+      <section className={styles['layout-wrapper']}>
+        <Header />
+        <main className={styles['content']}>{<Outlet />}</main>
+      </section>
+
+      {/* <Dashboard /> */}
     </section>
   );
 };

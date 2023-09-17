@@ -1,18 +1,27 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import DashboardLayout from './pages/dashboard';
+import TaskList from './components/task/task-list';
+import LoginPage from './pages/login';
+import SignUPPage from './pages/sign-up';
+import Dashboard from './components/dashboard';
+import TaskDetailPage from './components/task/task-detail-page';
+
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <DashboardLayout />
-      {/* <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-      </div> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<DashboardLayout />}>
+            <Route index path="/" element={<Dashboard />} />
+            <Route path="/tasks" element={<TaskList />} />
+            <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
+          </Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUPPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

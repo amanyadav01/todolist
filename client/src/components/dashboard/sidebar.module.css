@@ -3,4 +3,31 @@
   flex-direction: column;
   gap: 2rem;
   width: 20%;
+  background: rgb(255 255 255);
+  padding-left: 2rem;
+}
+
+.logo-header {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #302e2e;
+  display: block;
+  margin-top: 2rem;
+}
+
+.item-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #302e2e;
+}
+.item:hover {
+  color: #4183c4;
 }

@@ -1,0 +1,88 @@
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.wrapper {
+  padding: 2rem;
+  background: gray;
+  background: rgb(241 245 249/1);
+  width: 28%;
+}
+.login-form {
+  margin-top: 2rem;
+}
+.tabs {
+  display: flex;
+  gap: 1rem;
+  background: gray;
+  width: 35%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+}
+.tabs-item {
+  position: relative;
+}
+
+.tabs input[type='radio'] {
+  appearance: none;
+}
+
+.tabs-item label {
+  background: #e0e1e2;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+.tabs-item input[type='radio']:not(:checked) + label {
+  background: red;
+}
+.tabs input[type='radio']:checked + label {
+  color: red;
+}
+/* .tabs input[type='radio']:checked + lable {
+  color: red;
+}
+.tabs button {
+  background: gray;
+  color: #302e2e;
+  outline: none;
+  border: none;
+} */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin-bottom: 1rem;
+}
+.form-fields label {
+  font-size: 12px;
+}
+
+.form-fields input {
+  outline: none;
+  background: #fff;
+  /* border: 2px solid gray; */
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  box-shadow: 0 0 0 0 transparent inset;
+  color: #302e2e;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+.form-fields input::placeholder {
+  opacity: 0.6;
+}
+.login-form button {
+  background: #2f88e5;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
