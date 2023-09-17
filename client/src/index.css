@@ -30,6 +30,9 @@ a:hover {
 body {
   background-color: #fff;
 }
+div#root {
+  height: 100%;
+}
 /* 
 body {
   margin: 0;

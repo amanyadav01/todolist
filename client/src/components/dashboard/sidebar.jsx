@@ -1,11 +1,25 @@
+import { Link } from 'react-router-dom';
 import style from './sidebar.module.css';
 const Sidebar = () => {
   return (
     <aside className={style['sidebar-container']}>
-      <a href="/tasklist">My Task</a>
-      <a href="/tasklist">Completed Task</a>
-      <a href="/tasklist">In progress Task</a>
-      <a href="/tasklist">TO DO Task</a>
+      <Link to="/" className={style['logo-header']}>
+        TO-DO List
+      </Link>
+      <section className={style['item-lists']}>
+        <Link to="/tasks" className={style['item']}>
+          My Task
+        </Link>
+        <Link to="/tasks/1" className={style['item']}>
+          Completed Task
+        </Link>
+        <Link to="/tasks" className={style['item']}>
+          In progress Task
+        </Link>
+        <Link to="/tasks" className={style['item']}>
+          TO DO Task
+        </Link>
+      </section>
     </aside>
   );
 };
