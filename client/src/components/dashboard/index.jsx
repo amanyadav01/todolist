@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { getPost } from '../../services/fetchpost';
+import { getAllTasks } from '../../services/fetchpost';
 import styles from './dashboard.module.css';
 
 const Dashboard = () => {
   useEffect(() => {
     const getdata = async () => {
-      const response = await getPost();
+      const response = await getAllTasks();
       console.log('response >>>>>>>>>>>', response);
     };
     getdata();

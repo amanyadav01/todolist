@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TaskItem from './task-item';
 
+import { getTask } from '../../store/tasks/action';
+
 const TaskList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTask());
+  }, []);
+  const { tasks } = useSelector((state) => state?.taskReducer);
+  console.log('tasks', tasks);
   return (
     <div>
-      {[1, 2, 3, 4].map((item) => {
-        return <TaskItem />;
+      {tasks.map((item) => {
+        return <TaskItem title={item?.title} />;
       })}
     </div>
   );

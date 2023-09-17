@@ -1,11 +1,11 @@
 import { axiosInstance } from './axiosServices';
-const getPost = () => {
+const getAllTasks = () => {
     return axiosInstance({
-        url: '/posts',
+        url: '/todos',
         method: 'GET',
     })
 }
 
 export {
-    getPost
+    getAllTasks
 }
